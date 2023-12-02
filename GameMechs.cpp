@@ -97,7 +97,7 @@ void GameMechs::incrementScore()
 
 void GameMechs::checkStatus()
 {
-    if(input == '27')
+    if(input == 27)
     {
         exitFlag = 1;
     }
