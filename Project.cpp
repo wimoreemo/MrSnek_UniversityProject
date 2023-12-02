@@ -59,7 +59,7 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-
+    gameData->checkStatus();
     snek->updatePlayerDir();
     snek->movePlayer();
 }
@@ -116,9 +116,8 @@ void LoopDelay(void)
 
 
 void CleanUp(void)
-{
-    MacUILib_clearScreen();    
-  
+{   
+    
     MacUILib_uninit();
 
     delete gameData;
