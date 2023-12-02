@@ -108,7 +108,7 @@ char Player::getSymbol(int xPos, int yPos)
     // Finds the symbol of the player at a given coordinate
     // This is useful for arrayList character, since there are multiple characters across the gameboard
     // If no player instance at that coordinate, returns NULL
-    if(int xPos == playerPos.x && int yPos == playerPos.y)
+    if(xPos == playerPos.x && yPos == playerPos.y)
     {
         return playerPos.symbol;
     }

@@ -23,7 +23,7 @@ class Player
         void updatePlayerDir();
         void movePlayer();
 
-        char getSymbol(int xPos, int yPos)
+        char getSymbol(int xPos, int yPos);
 
 
 

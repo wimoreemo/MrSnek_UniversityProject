@@ -27,7 +27,7 @@ int main(void)
 
     Initialize();
 
-    while(gameData->(getExitFlagStatus == false))  
+    while(gameData->getExitFlagStatus() == false)  
     {
         GetInput();
         RunLogic();
@@ -73,7 +73,7 @@ void DrawScreen(void)
         MacUILib_printf("#");
         for(x = 0; x <= gameData->getBoardSizeX() - 1; x++)
         {
-            playerSymbol = snek.getSymbol(i, j);
+            playerSymbol = snek->getSymbol(x, y);
             if(playerSymbol != '\0')
             {
                 MacUILib_printf("%c", playerSymbol);
