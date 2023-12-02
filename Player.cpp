@@ -6,26 +6,35 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
-    // Initialize the playerPos member (soon to be changed to an objPosArrayList) using board size
-    playerPos.setObjPos(mainGameMechsRef->getBoardSizeX()/2, mainGameMechsRef->getBoardSizeY()/2, '@');
+    // Initialize the playerPosList member (soon to be changed to an objPosArrayList) using board size
+    //playerPosList.setObjPos(mainGameMechsRef->getBoardSizeX()/2, mainGameMechsRef->getBoardSizeY()/2, '@');
+    playerPosList = new objPosArrayList();
+    objPos tempValue(4, 4, '@');
+    playerPosList->insertTail(tempValue);
+    objPos tempValue2(4, 3, 'A');
+    playerPosList->insertTail(tempValue2);
+    objPos tempValue3(4, 2, 'B');
+    playerPosList->insertTail(tempValue3);
+    
 
 }
-
 
 Player::~Player()
 {
-    // There are no heap members yet, but there will be later
+    delete playerPosList;
 }
 
-void Player::getPlayerPos(objPos &returnPos)
+objPosArrayList* Player::getPlayerPosList()
 {
-    // return the reference to the playerPos array list
+    // return the reference to the playerPosList array list
 
-    returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
+    return playerPosList;
 }
 
 void Player::updatePlayerDir()
 {
+    
+
     // PPA3 input processing logic  
     // Uses input from mainGameMechsRef
     // Input should always be updated to the most recent input
@@ -64,42 +73,48 @@ void Player::updatePlayerDir()
 void Player::movePlayer()
 {
     // PPA3 Finite State Machine logic
-
-    switch(myDir)
+    objPos headElement;
+    playerPosList->getHeadElement(headElement);
+    if(myDir != STOP)
     {
-        case UP:
-        playerPos.y--;
-            if(playerPos.y < 0)
-            {
-                playerPos.y = mainGameMechsRef->getBoardSizeY() - 1;
-            }
-            break;
-        case DOWN:
-            playerPos.y++;
-            if(playerPos.y >= mainGameMechsRef->getBoardSizeY())
-            {
+        switch(myDir)
+        {
+            case UP:
+                headElement.y--;
+                if(headElement.y < 0)
+                {
+                    headElement.y = mainGameMechsRef->getBoardSizeY() - 1;
+                }
+                break;
+            case DOWN:
+                headElement.y++;
+                if(headElement.y >= mainGameMechsRef->getBoardSizeY())
+                {
 
-                playerPos.y = 0;
-            }
-            break;
-        case LEFT:
-            playerPos.x--;
-            if(playerPos.x < 0)
-            {
-                playerPos.x = mainGameMechsRef->getBoardSizeY();
-            }
-            break;
-        case RIGHT:
-            playerPos.x++;
-            if(playerPos.x >= mainGameMechsRef->getBoardSizeX())
-            {
-                playerPos.x = 0;
-            }
-            break;
-        default:
-            break;
-        
+                    headElement.y = 0;
+                }
+                break;
+            case LEFT:
+                headElement.x--;
+                if(headElement.x < 0)
+                {
+                    headElement.x = mainGameMechsRef->getBoardSizeX() - 1;
+                }
+                break;
+            case RIGHT:
+                headElement.x++;
+                if(headElement.x >= mainGameMechsRef->getBoardSizeX())
+                {
+                    headElement.x = 0;
+                }
+                break;
+            default:
+                break;
+        }
+        playerPosList->insertHead(headElement);
+        playerPosList->removeTail();
     }
+
 }
 
 char Player::getSymbol(int xPos, int yPos) 
@@ -108,9 +123,14 @@ char Player::getSymbol(int xPos, int yPos)
     // Finds the symbol of the player at a given coordinate
     // This is useful for arrayList character, since there are multiple characters across the gameboard
     // If no player instance at that coordinate, returns NULL
-    if(xPos == playerPos.x && yPos == playerPos.y)
+    objPos tempObj;
+    for(int i = 0; i < playerPosList->getSize(); i++)  
     {
-        return playerPos.symbol;
+        playerPosList->getElement(tempObj, i);
+        if(xPos == tempObj.x && yPos == tempObj.y)
+        {
+            return tempObj.symbol;
+        }
     }
     return 0;
     
