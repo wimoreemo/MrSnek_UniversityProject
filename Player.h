@@ -23,6 +23,10 @@ class Player
         void updatePlayerDir();
         void movePlayer();
 
+        char getSymbol(int xPos, int yPos)
+
+
+
     private:
         objPos playerPos;   // Upgrade this in iteration 3.       
         enum Dir myDir;
