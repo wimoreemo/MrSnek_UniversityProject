@@ -52,12 +52,14 @@ void Initialize(void)
 
 void GetInput(void)
 {
-   
+    gameData->updateInput();
 }
 
 void RunLogic(void)
 {
-    
+
+    snek->updatePlayerDir();
+    snek->movePlayer();
 }
 
 void DrawScreen(void)
@@ -116,4 +118,7 @@ void CleanUp(void)
     MacUILib_clearScreen();    
   
     MacUILib_uninit();
+
+    delete gameData;
+    delete snek;
 }
