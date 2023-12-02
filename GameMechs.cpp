@@ -44,11 +44,15 @@ bool GameMechs::getLoseFlagStatus()
 
 char GameMechs::getInput()
 {
+    return input;
+}
+
+void GameMechs::updateInput()
+{
     if(MacUILib_hasChar() == 1)
     {
         input = MacUILib_getChar();
     }
-    return input;
 }
 
 int GameMechs::getBoardSizeX()
@@ -89,6 +93,14 @@ void GameMechs::clearInput()
 void GameMechs::incrementScore()
 {
     score += 1;
+}
+
+void GameMechs::checkStatus()
+{
+    if(input == '27')
+    {
+        exitFlag = 1;
+    }
 }
 
 

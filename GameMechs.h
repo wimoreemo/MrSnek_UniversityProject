@@ -47,6 +47,10 @@ class GameMechs
         bool getLoseFlagStatus();
 
         void incrementScore();
+
+        void updateInput();
+
+        void checkStatus();
       
 
 };
