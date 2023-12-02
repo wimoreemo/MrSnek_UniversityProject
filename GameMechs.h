@@ -28,6 +28,8 @@ class GameMechs
         bool loseFlag;
         int score;
 
+        objPos* itemBin[5];
+
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
@@ -45,13 +47,13 @@ class GameMechs
         int getScore();
 
         bool getLoseFlagStatus();
-
         void incrementScore();
-
         void updateInput();
-
         void checkStatus();
-      
+
+        void generateFood(objPosArrayList* blockOff);
+        objPos** getFoodPos();
+  
 
 };
 
