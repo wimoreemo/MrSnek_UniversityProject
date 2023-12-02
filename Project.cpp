@@ -2,7 +2,7 @@
 #include "MacUILib.h"
 #include "objPos.h"
 #include "GameMechs.h"
-#include "player.h"
+#include "Player.h"
 
 
 using namespace std;
@@ -27,7 +27,7 @@ int main(void)
 
     Initialize();
 
-    while(gameData.getExitFlagStatus == false)  
+    while(gameData->(getExitFlagStatus == false))  
     {
         GetInput();
         RunLogic();
