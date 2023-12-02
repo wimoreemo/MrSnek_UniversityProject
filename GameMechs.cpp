@@ -11,7 +11,10 @@ GameMechs::GameMechs()
     exitFlag = false;
     loseFlag = false;
 
-    int score = 0;
+    score = 0;
+
+    binSize = BINSIZE;
+    itemBin = new objPos[binSize];
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -24,10 +27,17 @@ GameMechs::GameMechs(int boardX, int boardY)
     exitFlag = false;
     loseFlag = false;
 
-    int score = 0;
+    score = 0;
+
+    binSize = BINSIZE;
+    itemBin = new objPos[binSize];
 }
 
 // do you need a destructor?
+GameMechs::~GameMechs()
+{
+    delete itemBin;
+}
 
 
 
@@ -68,6 +78,11 @@ int GameMechs::getBoardSizeY()
 int GameMechs::getScore()
 {
     return score;
+}
+
+int GameMechs::getBinSize()
+{
+    return binSize;
 }
 
 void GameMechs::setExitTrue()
@@ -116,7 +131,7 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
     objPos tempObj;
     
     int i,j,k;
-    for(i = 0 ; i<5 ; i++)
+    for(i = 0 ; i < binSize ; i++)
     {
         
         do
@@ -138,7 +153,7 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
            
             for(j=0; j < i; j++)
             {
-                if((random_num_x == (*itemBin[j]).x)||(random_num_y == (*itemBin[j]).y))
+                if((random_num_x == itemBin[j].x)||(random_num_y == itemBin[j].y))
                 {
                     generation_flag = 1;
                 }
@@ -152,14 +167,14 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
 
             
         } while(generation_flag == 1);
-        (*itemBin[i]).x = random_num_x;
-        (*itemBin[i]).y = random_num_y;
-        (*itemBin[i]).symbol = random_symbol;
+        itemBin[i].x = random_num_x;
+        itemBin[i].y = random_num_y;
+        itemBin[i].symbol = random_symbol;
     }
 
 }
 
-objPos** GameMechs::getFoodPos()
+const objPos* GameMechs::getFoodPos()
 {
     return itemBin;
 }

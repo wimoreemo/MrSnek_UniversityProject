@@ -7,6 +7,9 @@
 #include "objPos.h"
 #include "objPosArrayList.h"
 
+#define BINSIZE 5
+
+
 using namespace std;
 
 
@@ -28,11 +31,13 @@ class GameMechs
         bool loseFlag;
         int score;
 
-        objPos* itemBin[5];
+        int binSize;
+        objPos* itemBin;
 
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
+        ~GameMechs();
         
         bool getExitFlagStatus();
         void setExitTrue();
@@ -45,6 +50,7 @@ class GameMechs
         int getBoardSizeX();
         int getBoardSizeY();
         int getScore();
+        int getBinSize();
 
         bool getLoseFlagStatus();
         void incrementScore();
@@ -52,7 +58,7 @@ class GameMechs
         void checkStatus();
 
         void generateFood(objPosArrayList* blockOff);
-        objPos** getFoodPos();
+        const objPos* getFoodPos();
   
 
 };
