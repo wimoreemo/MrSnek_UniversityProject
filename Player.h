@@ -21,7 +21,8 @@ class Player
 
         objPosArrayList* getPlayerPosList(); // Upgrade this in iteration 3.
         void updatePlayerDir();
-        void movePlayer();
+        void growPlayer();
+        void trimPlayer(int trimLength);
 
         char getSymbol(int xPos, int yPos);
 

@@ -63,10 +63,9 @@ void RunLogic(void)
 {
     gameData->checkStatus();
     snek->updatePlayerDir();
-    snek->movePlayer();
+    snek->growPlayer();
 
     // Collision logic
-    gameData->checkCollision(snek->getPlayerPosList);
 
 
 

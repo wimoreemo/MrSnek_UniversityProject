@@ -120,7 +120,7 @@ void Player::trimPlayer(int trimLength)
 {
     for(int i = 0; i <= trimLength; i++)
     {
-        playerPosList->removeTail()
+        playerPosList->removeTail();
     }
 }
 
