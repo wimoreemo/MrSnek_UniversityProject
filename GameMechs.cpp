@@ -13,8 +13,9 @@ GameMechs::GameMechs()
 
     score = 0;
 
-    binSize = BINSIZE;
-    itemBin = new objPos[binSize];
+    arraySize = ARRAYSIZE;
+    binSize = 0;
+    itemBin = new objPos[arraySize];
 
 }
 
@@ -30,8 +31,9 @@ GameMechs::GameMechs(int boardX, int boardY)
 
     score = 0;
 
-    binSize = BINSIZE;
-    itemBin = new objPos[binSize];
+    arraySize = ARRAYSIZE;
+    binSize = 0;
+    itemBin = new objPos[arraySize];
 
 }
 
@@ -122,6 +124,19 @@ void GameMechs::checkStatus()
 
 void GameMechs::generateFood(objPosArrayList* blockOff)
 {
+
+    if(arraySize <= (boardSizeX * boardSizeY) - blockOff->getSize() - 3 && arraySize != binSize)
+    {
+        binSize = arraySize;
+    }
+    else if(arraySize > (boardSizeX * boardSizeY) - blockOff->getSize() - 3)
+    {
+        binSize = (boardSizeX * boardSizeY) - blockOff->getSize() - 3;
+    } 
+    else if((boardSizeX * boardSizeY) - blockOff->getSize() <= 3)
+    {
+        binSize = 1;
+    }
 
     int random_num_x;
     int random_num_y;

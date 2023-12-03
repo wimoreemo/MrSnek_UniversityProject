@@ -7,7 +7,7 @@
 #include "objPos.h"
 #include "objPosArrayList.h"
 
-#define BINSIZE 5
+#define ARRAYSIZE 5
 #define FOOD_TYPES 3
 
 using namespace std;
@@ -31,6 +31,7 @@ class GameMechs
         bool loseFlag;
         int score;
 
+        int arraySize;
         int binSize;
         objPos* itemBin;
 
