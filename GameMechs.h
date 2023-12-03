@@ -58,6 +58,7 @@ class GameMechs
         void incrementScore();
         void updateInput();
         void checkStatus();
+        void get_Score(char food_collected);
 
         void generateFood(objPosArrayList* blockOff);
         const objPos* getFoodPos();

@@ -89,6 +89,24 @@ int GameMechs::getBinSize()
     return binSize;
 }
 
+int GameMechs::get_Score(char food_collected)
+{
+    int points;
+    switch(food_collected)
+        {
+            case '*':
+                points = 10; 
+                break;
+            case '?':
+                points = -30;
+                break;
+            case '$':
+                points = 50;
+                break;
+        }
+    return points;
+}
+
 void GameMechs::setExitTrue()
 {
     exitFlag = true;
