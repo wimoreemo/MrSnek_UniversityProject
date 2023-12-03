@@ -24,6 +24,10 @@ class Player
         void growPlayer();
         void trimPlayer(int trimLength);
 
+        bool checkSelfCollision();
+        char getFoodCollision();
+
+
         char getSymbol(int xPos, int yPos);
 
 

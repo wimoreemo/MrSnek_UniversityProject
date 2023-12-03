@@ -67,7 +67,6 @@ void RunLogic(void)
 
     // Collision logic
 
-    int collision_flag = 0;
     char collected_symbol;
 
     const objPos* food_on_board;
@@ -76,40 +75,32 @@ void RunLogic(void)
     objPos snek_head, snek_body;
     snek->getPlayerPosList()->getHeadElement(snek_head);
 
-    for(int i = 0 ; i < (gameData->getBinSize()) ; i++)
+
+
+
+
+    collected_symbol = snek->getFoodCollision();
+    if(collected_symbol != '\0')
     {
-        if(food_on_board[i].x == snek_head.x && food_on_board[i].y == snek_head.y)
-        {
-            collision_flag = 1;
-            collected_symbol = food_on_board[i].symbol;
-        }
-    }
-
-    for(int j = 0 ; j < (snek->getPlayerPosList()->getSize()) ; j++)
-    {
-        snek->getPlayerPosList()->getElement(snek_body,j);
-
-        if(snek_head.x == snek_body.x && snek_head.y == snek_body.y)
-        {
-            gameData->setLoseFlag();
-        }
-    }
-
-    int total_score;
-
-    if(collision_flag == 1)
-    {
-        total_score = gameData->getScore();
         switch(collected_symbol)
         {
             case '*':
+                gameData->setScore(gameData->getScore() + 1);
                 break;
             case '?':
+                gameData->setScore(gameData->getScore() - 4);
+                snek->trimPlayer(3);
                 break;
             case '$':
+                gameData->setScore(gameData->getScore() + 3);
+                snek->trimPlayer(1);
                 break;
         }
 
+    }
+    else
+    {
+        snek->trimPlayer(1);
     }
 
 

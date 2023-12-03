@@ -11,10 +11,6 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList = new objPosArrayList();
     objPos tempValue(4, 4, '@');
     playerPosList->insertTail(tempValue);
-    objPos tempValue2(4, 3, 'A');
-    playerPosList->insertTail(tempValue2);
-    objPos tempValue3(4, 2, 'B');
-    playerPosList->insertTail(tempValue3);
     
 
 }
@@ -111,17 +107,51 @@ void Player::growPlayer()
             default:
                 break;
         }
-        playerPosList->insertHead(headElement);
     }
+    playerPosList->insertHead(headElement);
+
 
 }
 
 void Player::trimPlayer(int trimLength)
 {
-    for(int i = 0; i <= trimLength; i++)
+    for(int i = 0; i < trimLength; i++)
     {
         playerPosList->removeTail();
     }
+}
+
+bool Player::checkSelfCollision()
+{
+    objPos playerHead;
+    objPos playerBody;
+    playerPosList->getHeadElement(playerHead);
+    for(int j = 0 ; j < (playerPosList->getSize()) ; j++)
+    {
+        playerPosList->getElement(playerBody,j);
+
+        if(playerHead.x == playerBody.x && playerHead.y == playerBody.y)
+        {
+            mainGameMechsRef->setLoseFlag();
+        }
+    }
+}
+
+char Player::getFoodCollision()
+{
+    objPos playerHead;
+    objPos tempObj;
+    playerPosList->getHeadElement(playerHead);
+
+    for(int i = 0 ; i < (mainGameMechsRef->getBinSize()) ; i++)
+    {
+        mainGameMechsRef->getBinElement(tempObj, i);
+        if(tempObj.x == playerHead.x && tempObj.y == playerHead.y)
+        {
+            return tempObj.symbol;
+        }
+    }
+    return '\0';
 }
 
 
