@@ -126,13 +126,13 @@ bool Player::checkSelfCollision()
     objPos playerHead;
     objPos playerBody;
     playerPosList->getHeadElement(playerHead);
-    for(int j = 0 ; j < (playerPosList->getSize()) ; j++)
+    for(int j = 1 ; j < (playerPosList->getSize()) ; j++)
     {
         playerPosList->getElement(playerBody,j);
 
         if(playerHead.x == playerBody.x && playerHead.y == playerBody.y)
         {
-            mainGameMechsRef->setLoseFlag();
+            mainGameMechsRef->setExitTrue();
         }
     }
 }
@@ -148,9 +148,11 @@ char Player::getFoodCollision()
         mainGameMechsRef->getBinElement(tempObj, i);
         if(tempObj.x == playerHead.x && tempObj.y == playerHead.y)
         {
+            mainGameMechsRef->generateFood(playerPosList);
             return tempObj.symbol;
+            
         }
-    }
+    }   
     return '\0';
 }
 
