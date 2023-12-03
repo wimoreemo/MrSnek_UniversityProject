@@ -8,7 +8,7 @@
 #include "objPosArrayList.h"
 
 #define BINSIZE 5
-
+#define FOOD_TYPES 3
 
 using namespace std;
 
@@ -33,6 +33,7 @@ class GameMechs
 
         int binSize;
         objPos* itemBin;
+
 
     public:
         GameMechs();

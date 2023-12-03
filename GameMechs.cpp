@@ -15,6 +15,7 @@ GameMechs::GameMechs()
 
     binSize = BINSIZE;
     itemBin = new objPos[binSize];
+
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -31,6 +32,7 @@ GameMechs::GameMechs(int boardX, int boardY)
 
     binSize = BINSIZE;
     itemBin = new objPos[binSize];
+
 }
 
 // do you need a destructor?
@@ -121,8 +123,16 @@ void GameMechs::checkStatus()
 void GameMechs::generateFood(objPosArrayList* blockOff)
 {
 
-    int random_num_x, random_num_y;
+    int random_num_x;
+    int random_num_y;
     char random_symbol;
+
+    srand(time(NULL));
+
+    char food_symbols_string[] = "*$?";
+    int str_len;
+    int max_rand_symbols = 3;
+    for(str_len = 0;food_symbols_string[str_len]!= '\0';str_len++);
 
     int generation_flag = 1;
 
@@ -138,9 +148,9 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
         {
             generation_flag = 0;
 
-            random_num_x = rand() % (boardSizeX-2);
-            random_num_y = rand() % (boardSizeY-2);
-            random_symbol = '*';
+            random_num_x = rand() % (boardSizeX-1);
+            random_num_y = rand() % (boardSizeY-1);
+            random_symbol = food_symbols_string[(rand() % (str_len))];
 
 
             for(k = 0; k < m ; k++)
@@ -158,9 +168,9 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
                     generation_flag = 1;
                 }
 
-                if(i == 4)
+                if(j >= max_rand_symbols)
                 {
-                    random_symbol = '$';
+                    random_symbol = '*';
                 }
             }
             
