@@ -124,6 +124,11 @@ void GameMechs::setInput(char this_input)
     input = MacUILib_getChar();
 }
 
+void GameMechs::setScore(int input_score)
+{
+    score = input_score;
+}
+
 // other functions
 void GameMechs::updateInput()
 {
