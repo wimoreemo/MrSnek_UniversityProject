@@ -1,6 +1,7 @@
 #include "GameMechs.h"
 #include "MacUILib.h"
 
+// constructors
 GameMechs::GameMechs()
 {
     input = '\0';
@@ -43,13 +44,11 @@ GameMechs::~GameMechs()
     delete itemBin;
 }
 
-
-
+// getter functions
 bool GameMechs::getExitFlagStatus()
 {
     return exitFlag;
 }
-
 
 bool GameMechs::getLoseFlagStatus()
 {
@@ -61,12 +60,9 @@ char GameMechs::getInput()
     return input;
 }
 
-void GameMechs::updateInput()
+const objPos* GameMechs::getFoodPos()
 {
-    if(MacUILib_hasChar() == 1)
-    {
-        input = MacUILib_getChar();
-    }
+    return itemBin;
 }
 
 int GameMechs::getBoardSizeX()
@@ -89,7 +85,7 @@ int GameMechs::getBinSize()
     return binSize;
 }
 
-int GameMechs::get_Score(char food_collected)
+/*int GameMechs::get_Score(char food_collected)
 {
     int points;
     switch(food_collected)
@@ -105,8 +101,14 @@ int GameMechs::get_Score(char food_collected)
                 break;
         }
     return points;
+}*/
+
+void GameMechs::getBinElement(objPos &foodObject, int bin_index)
+{
+    foodObject.setObjPos(itemBin[bin_index]);
 }
 
+// setter functions
 void GameMechs::setExitTrue()
 {
     exitFlag = true;
@@ -114,7 +116,7 @@ void GameMechs::setExitTrue()
 
 void GameMechs::setLoseFlag()
 {
-    exitFlag = true;
+    loseFlag = true;
 }
 
 void GameMechs::setInput(char this_input)
@@ -122,14 +124,18 @@ void GameMechs::setInput(char this_input)
     input = MacUILib_getChar();
 }
 
+// other functions
+void GameMechs::updateInput()
+{
+    if(MacUILib_hasChar() == 1)
+    {
+        input = MacUILib_getChar();
+    }
+}
+
 void GameMechs::clearInput()
 {
     input = '\0';
-}
-
-void GameMechs::incrementScore()
-{
-    score += 1;
 }
 
 void GameMechs::checkStatus()
@@ -217,9 +223,6 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
 
 }
 
-const objPos* GameMechs::getFoodPos()
-{
-    return itemBin;
-}
+
 
 

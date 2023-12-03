@@ -35,35 +35,40 @@ class GameMechs
         int binSize;
         objPos* itemBin;
 
+        enum life_state { alive,self_collision,score_death};
 
     public:
+        //constructors
         GameMechs();
         GameMechs(int boardX, int boardY);
+
+        //destructor
         ~GameMechs();
         
-        bool getExitFlagStatus();
+        // setters
         void setExitTrue();
-
-        char getInput();
         void setInput(char this_input);
-        void clearInput();
         void setLoseFlag();
 
+        // getters
+        bool getExitFlagStatus();
+        char getInput();
         int getBoardSizeX();
         int getBoardSizeY();
         int getScore();
         int getBinSize();
-
         bool getLoseFlagStatus();
-        void incrementScore();
+        //void get_Score(char food_collected);
+        const objPos* getFoodPos();
+        void getBinElement(objPos &foodObject,int bin_index);
+  
+        // other functions
+        void clearInput();
         void updateInput();
         void checkStatus();
-        void get_Score(char food_collected);
-
         void generateFood(objPosArrayList* blockOff);
-        const objPos* getFoodPos();
-  
-
+        
+        
 };
 
 #endif
