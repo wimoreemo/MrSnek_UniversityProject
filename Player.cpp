@@ -112,7 +112,6 @@ void Player::movePlayer()
                 break;
         }
         playerPosList->insertHead(headElement);
-        playerPosList->removeTail();
     }
 
 }
