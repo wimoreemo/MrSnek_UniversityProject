@@ -151,6 +151,26 @@ void GameMechs::checkStatus()
     }
 }
 
+int GameMechs::foodProcessor(char collected_symbol)
+{
+    int trim;
+    switch(collected_symbol)
+        {
+            case '*':
+                trim = 0;
+                break;
+            case '?':
+                trim = 3;
+                break;
+            case '$':
+                trim = 1;
+                break;
+            default:
+                trim = 1;
+        }
+    return trim;
+}
+
 void GameMechs::generateFood(objPosArrayList* blockOff)
 {
 
