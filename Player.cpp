@@ -70,7 +70,7 @@ void Player::updatePlayerDir()
        
 }
 
-void Player::movePlayer()
+void Player::growPlayer()
 {
     // PPA3 Finite State Machine logic
     objPos headElement;
@@ -115,6 +115,15 @@ void Player::movePlayer()
     }
 
 }
+
+void Player::trimPlayer(int trimLength)
+{
+    for(int i = 0; i <= trimLength; i++)
+    {
+        playerPosList->removeTail()
+    }
+}
+
 
 char Player::getSymbol(int xPos, int yPos) 
 {

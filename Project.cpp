@@ -65,7 +65,43 @@ void RunLogic(void)
     snek->updatePlayerDir();
     snek->movePlayer();
 
+    // Collision logic
+    gameData->checkCollision(snek->getPlayerPosList);
+
+
+
 }
+
+
+
+/*
+TODO
+-Change your preprocessor constant to be named ARRAYSIZE
+-Set a new integer member arraySize equal to ARRAYSIZE
+-In your bin allocation line, tell it to create an array of size arraySize
+-Set binSize equal to arraySize
+-leave all other instances of binSize the way they are, this is our pseudo-array-length
+
+
+
+
+if(arraySize <= (boardSizeX * boardSizeY) - blockOff.getSize() - 3 && arraySize != binSize)
+{
+    binSize = arraySize;
+}
+else if(arraySize > (boardSizeX * boardSizeY) - blockOff.getSize() - 3)
+{
+    binSize = (boardSizeX * boardSizeY) - blockOff.getSize() - 3;
+} 
+else if((boardSizeX * boardSizeY) - blockOff.getSize() <= 3)
+{
+    binSize = 1;
+}
+
+
+
+
+*/
 
 void DrawScreen(void)
 {
