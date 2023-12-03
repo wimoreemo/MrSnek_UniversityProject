@@ -68,7 +68,7 @@ class GameMechs
         void updateInput();
         void checkStatus();
         void generateFood(objPosArrayList* blockOff);
-        int foodProcessor(char collected_symbol);
+        int processFood(char collected_symbol);
         
         
 };

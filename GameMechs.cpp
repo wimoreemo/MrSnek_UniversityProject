@@ -151,7 +151,7 @@ void GameMechs::checkStatus()
     }
 }
 
-int GameMechs::foodProcessor(char collected_symbol)
+int GameMechs::processFood(char collected_symbol)
 {
     int trim;
     switch(collected_symbol)

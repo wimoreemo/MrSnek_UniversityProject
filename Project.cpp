@@ -69,17 +69,12 @@ void RunLogic(void)
 
     char collected_symbol;
 
-    const objPos* food_on_board;
-    food_on_board = gameData->getFoodPos();
-
-    objPos snek_head, snek_body;
-    snek->getPlayerPosList()->getHeadElement(snek_head);
-
-
-
-
-
+    snek->checkSelfCollision();
     collected_symbol = snek->getFoodCollision();
+
+    snek->trimPlayer(gameData->processFood(collected_symbol));
+
+/*
     if(collected_symbol != '\0')
     {
         switch(collected_symbol)
@@ -102,6 +97,7 @@ void RunLogic(void)
     {
         snek->trimPlayer(1);
     }
+    */
 
 
 }
