@@ -47,11 +47,11 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
-    gameData = new GameMechs(1,2);
+    // GameMechs parameters refer to display size (x, y)
+    gameData = new GameMechs(20, 10);
     snek = new Player(gameData);
 
     gameData->generateFood(snek->getPlayerPosList());
-
 }
 
 void GetInput(void)
@@ -61,21 +61,25 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-
+    char collected_symbol;
+    int trimLength;
 
 
     snek->updatePlayerDir();
+
+    // Snake movement function split into growPlayer and trimPlayer in order to more efficiently control snake size
     snek->growPlayer();
 
     // Collision logic
 
-    char collected_symbol;
-    int trimLength;
-
+    // Get symbol that the snake collided with
     collected_symbol = snek->getFoodCollision();
 
+    // Process the symbol that the snake collided with
+    // ^ Adjusts score and returns number of times to trim the player length
     trimLength = gameData->processFood(collected_symbol);
 
+    // Trim the player length a specific number of times depending on food
     snek->trimPlayer(trimLength);
 
     //Check game status
@@ -132,6 +136,8 @@ void DrawScreen(void)
         MacUILib_printf("#\n");
     }
     MacUILib_printf("\nControls:\nUP    -> W\nDOWN  -> S\nLEFT  -> A\nRIGHT -> D\n\nCollect food (*) to grow! Beware special foods!\nPress Esc to quit.\n\n");
+    
+    // If the game is ending, print a termination message
     if(gameData->getGameStatus() != 0)
     {
         MacUILib_printf("%s", gameData->getEndMessage());
