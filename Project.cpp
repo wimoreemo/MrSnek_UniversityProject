@@ -68,72 +68,18 @@ void RunLogic(void)
     // Collision logic
 
     char collected_symbol;
+    int trimLength;
 
     collected_symbol = snek->getFoodCollision();
 
-    snek->trimPlayer(gameData->processFood(collected_symbol));
+    trimLength = gameData->processFood(collected_symbol);
+
+    snek->trimPlayer(trimLength);
+
     snek->checkSelfCollision();
 
 
-
-/*
-    if(collected_symbol != '\0')
-    {
-        switch(collected_symbol)
-        {
-            case '*':
-                gameData->setScore(gameData->getScore() + 1);
-                break;
-            case '?':
-                gameData->setScore(gameData->getScore() - 4);
-                snek->trimPlayer(3);
-                break;
-            case '$':
-                gameData->setScore(gameData->getScore() + 3);
-                snek->trimPlayer(1);
-                break;
-        }
-
-    }
-    else
-    {
-        snek->trimPlayer(1);
-    }
-    */
-
-
 }
-
-
-
-/*
-TODO
--Change your preprocessor constant to be named ARRAYSIZE
--Set a new integer member arraySize equal to ARRAYSIZE
--In your bin allocation line, tell it to create an array of size arraySize
--Set binSize equal to arraySize
--leave all other instances of binSize the way they are, this is our pseudo-array-length
-
-
-
-
-if(arraySize <= (boardSizeX * boardSizeY) - blockOff.getSize() - 3 && arraySize != binSize)
-{
-    binSize = arraySize;
-}
-else if(arraySize > (boardSizeX * boardSizeY) - blockOff.getSize() - 3)
-{
-    binSize = (boardSizeX * boardSizeY) - blockOff.getSize() - 3;
-} 
-else if((boardSizeX * boardSizeY) - blockOff.getSize() <= 3)
-{
-    binSize = 1;
-}
-
-
-
-
-*/
 
 void DrawScreen(void)
 {
