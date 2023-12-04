@@ -227,7 +227,7 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
            
             for(j=0; j < i; j++)
             {
-                if((random_num_x == itemBin[j].x)||(random_num_y == itemBin[j].y))
+                if((random_num_x == itemBin[j].x)&&(random_num_y == itemBin[j].y))
                 {
                     generation_flag = 1;
                 }
