@@ -29,7 +29,7 @@ int main(void)
 
     Initialize();
 
-    while(gameData->getExitFlagStatus() == false)  
+    while(gameData->getGameStatus() == 0)  
     {
         GetInput();
         RunLogic();
@@ -61,7 +61,13 @@ void GetInput(void)
 
 void RunLogic(void)
 {
+    //Check game status
     gameData->checkStatus();
+    gameData->checkScoreDeath();
+    snek->checkSelfCollision();
+    snek->checkStarvation();
+
+
     snek->updatePlayerDir();
     snek->growPlayer();
 
@@ -76,7 +82,8 @@ void RunLogic(void)
 
     snek->trimPlayer(trimLength);
 
-    snek->checkSelfCollision();
+
+
 
 
 }
@@ -121,6 +128,11 @@ void DrawScreen(void)
 
         }
         MacUILib_printf("#\n");
+    }
+
+    if(gameData->getGameStatus() != 0)
+    {
+        MacUILib_printf("%s", gameData->getEndMessage());
     }
 
     

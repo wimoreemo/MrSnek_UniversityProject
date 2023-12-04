@@ -121,7 +121,7 @@ void Player::trimPlayer(int trimLength)
     }
 }
 
-bool Player::checkSelfCollision()
+void Player::checkSelfCollision()
 {
     objPos playerHead;
     objPos playerBody;
@@ -132,8 +132,16 @@ bool Player::checkSelfCollision()
 
         if(playerHead.x == playerBody.x && playerHead.y == playerBody.y)
         {
-            mainGameMechsRef->setExitTrue();
+            mainGameMechsRef->setGameStateCollision();
         }
+    }
+}
+
+void Player::checkStarvation()
+{
+    if(playerPosList->getSize() <= 0)
+    {
+        mainGameMechsRef->setGameStateStarvation();
     }
 }
 

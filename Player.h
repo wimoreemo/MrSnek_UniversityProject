@@ -24,7 +24,9 @@ class Player
         void growPlayer();
         void trimPlayer(int trimLength);
 
-        bool checkSelfCollision();
+        void checkSelfCollision();
+        void checkStarvation();
+
         char getFoodCollision();
 
 
