@@ -99,9 +99,14 @@ void Player::updatePlayerDir()
     }     
 }
 
+
+// The player movement function has been adapted into growPlayer, which only 
+// grows the snake in the specified direction
+
+// This is so that we can specify the number of times to trim the snake's 
+// tail during the food information processing stage, which comes after player movement
 void Player::growPlayer()
 {
-    // PPA3 Finite State Machine logic here.
     objPos headElement;
     playerPosList->getHeadElement(headElement);
     if(myDir != STOP)
@@ -145,6 +150,8 @@ void Player::growPlayer()
 }
 
 // Function that trims snake length.
+// As mentioned in a comment above the previous member function, this is done so that
+// we can better control the snake's length when we process the food information
 void Player::trimPlayer(int trimLength)
 {
     for(int i = 0; i < trimLength; i++)
