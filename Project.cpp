@@ -47,7 +47,7 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
-    gameData = new GameMechs(5, 5);
+    gameData = new GameMechs(1,2);
     snek = new Player(gameData);
 
     gameData->generateFood(snek->getPlayerPosList());
@@ -73,6 +73,7 @@ void RunLogic(void)
 
     snek->trimPlayer(gameData->processFood(collected_symbol));
     snek->checkSelfCollision();
+
 
 
 /*

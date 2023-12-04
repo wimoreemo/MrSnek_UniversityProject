@@ -24,8 +24,16 @@ GameMechs::GameMechs(int boardX, int boardY)
 {
     input = '\0';
 
-    boardSizeX = boardX;
-    boardSizeY = boardY;
+    if(boardX <= 1 || boardY <= 1)
+    {
+        boardSizeX = 30;
+        boardSizeY = 15;
+    }
+    else
+    {
+        boardSizeX = boardX;
+        boardSizeY = boardY;
+    }
 
     exitFlag = false;
     loseFlag = false;
