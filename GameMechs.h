@@ -16,20 +16,10 @@ using namespace std;
 
 class GameMechs
 {
-    // Construct the remaining declaration from the project manual.
-
-    // Only some sample members are included here
-
-    // You will include more data members and member functions to complete your design.
-
     private:
         char input;
-        bool exitFlag;
-        
         int boardSizeX;
         int boardSizeY;
-
-        bool loseFlag;
         int score = 0;
 
         int arraySize;
@@ -45,26 +35,22 @@ class GameMechs
 
         //destructor
         ~GameMechs();
-        
-        // setters
-        void setExitTrue();
-        void setInput(char this_input);
-        void setLoseFlag();
-        void setGameStateCollision();
-        void setGameStateStarvation();
 
         // getters
-        bool getExitFlagStatus();
         char getInput();
         int getBoardSizeX();
         int getBoardSizeY();
         int getScore();
         int getBinSize();
-        bool getLoseFlagStatus();
         const objPos* getFoodPos();
         void getBinElement(objPos &foodObject,int bin_index);
         int getGameStatus();
         const char* getEndMessage();
+        
+        // setters
+        void setInput(char this_input);
+        void setGameStateCollision();
+        void setGameStateStarvation();
         
         // other functions
         void clearInput();
