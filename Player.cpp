@@ -9,7 +9,7 @@ Player::Player(GameMechs* thisGMRef)
     // Initialize the playerPosList member (soon to be changed to an objPosArrayList) using board size
     //playerPosList.setObjPos(mainGameMechsRef->getBoardSizeX()/2, mainGameMechsRef->getBoardSizeY()/2, '@');
     playerPosList = new objPosArrayList();
-    objPos tempValue(4, 4, '@');
+    objPos tempValue(mainGameMechsRef->getBoardSizeX()/2,mainGameMechsRef->getBoardSizeY()/2, '@');
     playerPosList->insertTail(tempValue);
     
 

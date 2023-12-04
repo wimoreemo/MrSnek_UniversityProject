@@ -47,7 +47,7 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
-    gameData = new GameMechs(45, 30);
+    gameData = new GameMechs(5, 5);
     snek = new Player(gameData);
 
     gameData->generateFood(snek->getPlayerPosList());
