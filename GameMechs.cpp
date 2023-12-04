@@ -93,27 +93,32 @@ int GameMechs::getBinSize()
     return binSize;
 }
 
-/*int GameMechs::get_Score(char food_collected)
-{
-    int points;
-    switch(food_collected)
-        {
-            case '*':
-                points = 10; 
-                break;
-            case '?':
-                points = -30;
-                break;
-            case '$':
-                points = 50;
-                break;
-        }
-    return points;
-}*/
-
 void GameMechs::getBinElement(objPos &foodObject, int bin_index)
 {
     foodObject.setObjPos(itemBin[bin_index]);
+}
+
+int GameMechs::getGameStatus()
+{
+    return gameState;
+}
+
+string GameMechs::getEndMessage()
+{
+    switch(gameState)
+    {
+        case 1:
+            return "Goodbye!";
+        case 2:
+            return "Oh no! You ran into yourself!! You died!";
+        case 3:
+            return "Uh oh...  You're out of points!!\nSome foods TAKE AWAY points...  be careful!";
+        case 4: 
+            return "You let snek starve to death! :( \nDon't eat too many '?' fruits!!";
+        default:
+            break;
+    }
+    return "";
 }
 
 // setter functions
@@ -132,9 +137,14 @@ void GameMechs::setInput(char this_input)
     input = MacUILib_getChar();
 }
 
-void GameMechs::setScore(int input_score)
+void GameMechs::setGameStateCollision()
 {
-    score = input_score;
+    gameState = 2;
+}
+
+void GameMechs::setGameStateStarvation()
+{
+    gameState = 4;
 }
 
 // other functions
@@ -155,7 +165,7 @@ void GameMechs::checkStatus()
 {
     if(input == ((char)27))
     {
-        exitFlag = 1;
+        gameState = 1;
     }
 }
 
@@ -166,17 +176,28 @@ int GameMechs::processFood(char collected_symbol)
         {
             case '*':
                 trim = 0;
+                score += 2;
                 break;
             case '?':
                 trim = 3;
+                score += -10;
                 break;
             case '$':
                 trim = 1;
+                score += 6;
                 break;
             default:
                 trim = 1;
         }
     return trim;
+}
+
+void GameMechs::checkScoreDeath()
+{
+    if(score < 0) 
+    {
+        gameState = 3;
+    }
 }
 
 void GameMechs::generateFood(objPosArrayList* blockOff)

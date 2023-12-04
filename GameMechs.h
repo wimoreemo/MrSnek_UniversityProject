@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <time.h>
+#include <string>
 
 #include "objPos.h"
 #include "objPosArrayList.h"
@@ -29,13 +30,13 @@ class GameMechs
         int boardSizeY;
 
         bool loseFlag;
-        int score;
+        int score = 0;
 
         int arraySize;
         int binSize;
         objPos* itemBin;
 
-        enum life_state { alive,self_collision,score_death};
+        int gameState = 0;
 
     public:
         //constructors
@@ -49,7 +50,8 @@ class GameMechs
         void setExitTrue();
         void setInput(char this_input);
         void setLoseFlag();
-        void setScore(int input_score);
+        void setGameStateCollision();
+        void setGameStateStarvation();
 
         // getters
         bool getExitFlagStatus();
@@ -59,14 +61,16 @@ class GameMechs
         int getScore();
         int getBinSize();
         bool getLoseFlagStatus();
-        //void get_Score(char food_collected);
         const objPos* getFoodPos();
         void getBinElement(objPos &foodObject,int bin_index);
-  
+        int getGameStatus();
+        string getEndMessage();
+        
         // other functions
         void clearInput();
         void updateInput();
         void checkStatus();
+        void checkScoreDeath();
         void generateFood(objPosArrayList* blockOff);
         int processFood(char collected_symbol);
         
