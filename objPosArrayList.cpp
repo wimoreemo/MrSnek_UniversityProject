@@ -1,25 +1,42 @@
 #include "objPosArrayList.h"
 
-// Paste your CUTE Tested implementation here.
-// Paste your CUTE Tested implementation here.
-// Paste your CUTE Tested implementation here.
 
+// constructors
 objPosArrayList::objPosArrayList()
 {
     sizeArray = ARRAY_MAX_CAP;
     aList = new objPos[sizeArray];
     sizeList = 0;
 }
+
+// destructor
 objPosArrayList::~objPosArrayList()
 {
     delete aList;
 }
 
+// getter functions
 int objPosArrayList::getSize()
 {
     return sizeList;
 }
 
+void objPosArrayList::getHeadElement(objPos &returnPos)
+{
+    returnPos.setObjPos(aList[0]);
+}
+
+void objPosArrayList::getTailElement(objPos &returnPos)
+{
+    returnPos.setObjPos(aList[sizeList - 1]);
+}
+
+void objPosArrayList::getElement(objPos &returnPos, int index)
+{
+    returnPos.setObjPos(aList[index]);   
+}
+
+// other functions
 void objPosArrayList::insertHead(objPos thisPos)
 {
     for(int i = sizeList; i > 0; i--)
@@ -50,19 +67,4 @@ void objPosArrayList::removeTail()
     sizeList--;
 }
 
-void objPosArrayList::getHeadElement(objPos &returnPos)
-{
-    returnPos.setObjPos(aList[0]);
-    //aList[0].getObjPos(returnPos);
-}
 
-void objPosArrayList::getTailElement(objPos &returnPos)
-{
-    returnPos.setObjPos(aList[sizeList - 1]);
-}
-
-void objPosArrayList::getElement(objPos &returnPos, int index)
-{
-    returnPos.setObjPos(aList[index]);
-    //aList[index].getObjPos(returnPos);
-}

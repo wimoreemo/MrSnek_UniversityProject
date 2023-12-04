@@ -16,15 +16,19 @@ class objPosArrayList
         objPosArrayList();
         ~objPosArrayList();
 
+        // getter functions
         int getSize();
+        void getHeadElement(objPos &returnPos);
+        void getTailElement(objPos &returnPos);
+        void getElement(objPos &returnPos, int index);
+
+        // other functions
         void insertHead(objPos thisPos);
         void insertTail(objPos thisPos);
         void removeHead();
         void removeTail();
         
-        void getHeadElement(objPos &returnPos);
-        void getTailElement(objPos &returnPos);
-        void getElement(objPos &returnPos, int index);
+        
 };
 
 #endif

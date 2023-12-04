@@ -7,38 +7,29 @@
 
 class Player
 {
-    // Construct the remaining declaration from the project manual.
-
-    // Only some sample members are included here
-
-    // You will include more data members and member functions to complete your design.
-
     public:
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
         Player(GameMechs* thisGMRef);
         ~Player();
 
+        // getter functions
         objPosArrayList* getPlayerPosList(); // Upgrade this in iteration 3.
+        char getSymbol(int xPos, int yPos);
+        char getFoodCollision();
+        
+        // other functions
         void updatePlayerDir();
         void growPlayer();
         void trimPlayer(int trimLength);
-
         void checkSelfCollision();
         void checkStarvation();
 
-        char getFoodCollision();
-
-
-        char getSymbol(int xPos, int yPos);
-
-
-
     private:
-        objPosArrayList* playerPosList;   // Upgrade this in iteration 3.       
+        objPosArrayList* playerPosList;    
         enum Dir myDir;
 
-        // Need a reference to the Main Game Mechanisms
+        // Reference to the Main Game Mechanisms.
         GameMechs* mainGameMechsRef;
 };
 
