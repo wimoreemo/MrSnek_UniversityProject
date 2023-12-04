@@ -1,7 +1,4 @@
 #include <iostream>
-#include <string>
-#include <iostream>
-
 #include "MacUILib.h"
 #include "objPos.h"
 #include "GameMechs.h"
@@ -64,11 +61,7 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    //Check game status
-    gameData->checkStatus();
-    gameData->checkScoreDeath();
-    snek->checkSelfCollision();
-    snek->checkStarvation();
+
 
 
     snek->updatePlayerDir();
@@ -85,7 +78,11 @@ void RunLogic(void)
 
     snek->trimPlayer(trimLength);
 
-
+    //Check game status
+    gameData->checkStatus();
+    gameData->checkScoreDeath();
+    snek->checkSelfCollision();
+    snek->checkStarvation();
 
 
 
@@ -94,7 +91,7 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen(); 
-    MacUILib_printf("Welcome to Snek Game! (you're Snek)\n");
+    MacUILib_printf("Welcome to Snek Game! ( you're Snek -> @ )\n");
     MacUILib_printf("Your score is: %d\n\n",gameData->getScore());
     int x;
     int y;
@@ -137,8 +134,7 @@ void DrawScreen(void)
     MacUILib_printf("\nControls:\nUP    -> W\nDOWN  -> S\nLEFT  -> A\nRIGHT -> D\n\nCollect food (*) to grow! Beware special foods!\nPress Esc to quit.\n\n");
     if(gameData->getGameStatus() != 0)
     {
-        //MacUILib_printf("%s", gameData->getEndMessage());
-        std:cout << gameData->getEndMessage();
+        MacUILib_printf("%s", gameData->getEndMessage());
     }
 
     

@@ -3,8 +3,8 @@
 
 #include <cstdlib>
 #include <time.h>
-#include <string>
 
+#include "MacUILib.h"
 #include "objPos.h"
 #include "objPosArrayList.h"
 
@@ -64,7 +64,7 @@ class GameMechs
         const objPos* getFoodPos();
         void getBinElement(objPos &foodObject,int bin_index);
         int getGameStatus();
-        string getEndMessage();
+        const char* getEndMessage();
         
         // other functions
         void clearInput();

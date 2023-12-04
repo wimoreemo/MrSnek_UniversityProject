@@ -1,5 +1,4 @@
 #include "GameMechs.h"
-#include "MacUILib.h"
 
 // constructors
 GameMechs::GameMechs()
@@ -103,7 +102,7 @@ int GameMechs::getGameStatus()
     return gameState;
 }
 
-string GameMechs::getEndMessage()
+const char* GameMechs::getEndMessage()
 {
     switch(gameState)
     {
@@ -114,7 +113,7 @@ string GameMechs::getEndMessage()
         case 3:
             return "Uh oh...  You're out of points!!\nSome foods TAKE AWAY points...  be careful!";
         case 4: 
-            return "You let snek starve to death! :( \nDon't eat too many '?' fruits!!";
+            return "You let Snek starve to death! :( \nSome foods make Snek smaller!";
         default:
             break;
     }
