@@ -10,5 +10,6 @@ Extended gameplay mode expansion of the classic Snake game. Standard game rules 
 - Run Executable in terminal using command '.\Project.exe' or click the application through file explorer.
 
 ### Additional Settings
-- Gameboard size can be altered through editing pre-processor constants.
+- Gameboard size can be altered through board size variables in GameMechs.cpp
+- Edit the board size variables within constructor functions.
 - Requires the generation of a new executable.
