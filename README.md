@@ -8,3 +8,7 @@ Extended gameplay mode expansion of the classic Snake game. Standard game rules 
 - Navigate to repo directory in terminal.
 - Use command 'make' for executable generation through Makefile.
 - Run Executable in terminal using command '.\Project.exe' or click the application through file explorer.
+
+### Additional Settings
+- Gameboard size can be altered through editing pre-processor constants.
+- Requires the generation of a new executable.
